@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Wqy&#39;s Home Page</title>
+  <subtitle>Impossible is nothing.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://WqyJh.github.io/"/>
+  <updated>2016-10-03T09:41:04.822Z</updated>
+  <id>http://WqyJh.github.io/</id>
+  
+  <author>
+    <name>wqy</name>
+    <email>781345688@qq.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有趣的Linux命令</title>
+    <link href="http://WqyJh.github.io/2016/10/03/%E6%9C%89%E8%B6%A3%E7%9A%84Linux%E5%91%BD%E4%BB%A4/"/>
+    <id>http://WqyJh.github.io/2016/10/03/有趣的Linux命令/</id>
+    <published>2016-10-03T08:18:34.000Z</published>
+    <updated>2016-10-03T09:41:04.822Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ag"><a href="#ag" class="headerlink" title="ag"></a><a href="https://github.com/ggreer/the_silver_searcher" target="_blank" rel="external">ag</a></h2><p>又名the silver searcher，是一个高效的代码搜索命令，当你要在大量代码中查找某个字符串时，ag一定是一个好帮手。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在当前目录下的所有文件里查找含有“word”的内容。</span></div><div class="line">$ ag word</div><div class="line"></div><div class="line"><span class="comment">#grep命令实现相同效果。</span></div><div class="line">$ grep <span class="string">"word"</span> * -R</div></pre></td></tr></table></figure></p>
+<p><a href="http://www.dongwm.com/archives/ack/" target="_blank" rel="external">ag, ack, grep效率对比</a></p>
+<h2 id="aria2c"><a href="#aria2c" class="headerlink" title="aria2c"></a><a href="https://github.com/aria2/aria2" target="_blank" rel="external">aria2c</a></h2><p>下载神器，通过网盘助手之类的浏览器扩展导出aria2下载命令，可以突破百度网盘限速，日常使用也很赞哦<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -c 表示启用断点续传</span></div><div class="line"><span class="comment"># -s10 表示将文件分成10部分，多线程多连接下载</span></div><div class="line"><span class="comment"># -k1M 表示文件分块的最小值为1M</span></div><div class="line"><span class="comment"># -x10表示单台服务器的最大连接数</span></div><div class="line"><span class="comment"># -o "filenam" 表示把下载的文件命名为filename</span></div><div class="line"><span class="comment"># “link” 可以是uri，magnet，torrent_file等</span></div><div class="line">$ aria2c -c <span class="_">-s</span>10 -k1M -x10 -o ”filename<span class="string">" "</span>link<span class="string">"</span></div></pre></td></tr></table></figure></p>
+<h2 id="未完待续～～～"><a href="#未完待续～～～" class="headerlink" title="未完待续～～～"></a>未完待续～～～</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;ag&quot;&gt;&lt;a href=&quot;#ag&quot; class=&quot;headerlink&quot; title=&quot;ag&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/ggreer/the_silver_searcher&quot; target=&quot;_blank&quot; rel=&quot;ext
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://WqyJh.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://WqyJh.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>

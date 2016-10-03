@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>有趣的Linux命令 | Wqy&#39;s Home Page | Impossible is nothing.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#9C27B0">
+  
+  
+  <meta name="keywords" content="Linux">
+  <meta name="description" content="ag又名the silver searcher，是一个高效的代码搜索命令，当你要在大量代码中查找某个字符串时，ag一定是一个好帮手。12345#在当前目录下的所有文件里查找含有“word”的内容。$ ag word#grep命令实现相同效果。$ grep &quot;word&quot; * -R
+ag, ack, grep效率对比
+aria2c下载神器，通过网盘助手之类的浏览器扩展导出aria2下载命令，可以突破百">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有趣的Linux命令">
+<meta property="og:url" content="http://WqyJh.github.io/2016/10/03/有趣的Linux命令/index.html">
+<meta property="og:site_name" content="Wqy's Home Page">
+<meta property="og:description" content="ag又名the silver searcher，是一个高效的代码搜索命令，当你要在大量代码中查找某个字符串时，ag一定是一个好帮手。12345#在当前目录下的所有文件里查找含有“word”的内容。$ ag word#grep命令实现相同效果。$ grep &quot;word&quot; * -R
+ag, ack, grep效率对比
+aria2c下载神器，通过网盘助手之类的浏览器扩展导出aria2下载命令，可以突破百">
+<meta property="og:updated_time" content="2016-10-03T09:41:04.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="有趣的Linux命令">
+<meta name="twitter:description" content="ag又名the silver searcher，是一个高效的代码搜索命令，当你要在大量代码中查找某个字符串时，ag一定是一个好帮手。12345#在当前目录下的所有文件里查找含有“word”的内容。$ ag word#grep命令实现相同效果。$ grep &quot;word&quot; * -R
+ag, ack, grep效率对比
+aria2c下载神器，通过网盘助手之类的浏览器扩展导出aria2下载命令，可以突破百">
+  
+    <link rel="alternative" href="/atom.xml" title="Wqy&#39;s Home Page" type="application/atom+xml">
+  
+  <meta name="summary" content="Stay hungry, stay foolish!">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">wqy</h5>
+        <a href="mailto:781345688@qq.com" title="781345688@qq.com" class="mail">781345688@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/categories"  >
+              <i class="icon icon-lg icon-categories"></i>
+              Categories
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/WqyJh" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404"  >
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Wqy&#39;s Home Page &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">有趣的Linux命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">有趣的Linux命令</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-10-03T08:18:34.000Z" itemprop="datePublished" class="page-time">
+  2016-10-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-有趣的Linux命令" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ag"><span class="post-toc-number">1.</span> <span class="post-toc-text">ag</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#aria2c"><span class="post-toc-number">2.</span> <span class="post-toc-text">aria2c</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#未完待续～～～"><span class="post-toc-number">3.</span> <span class="post-toc-text">未完待续～～～</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="ag"><a href="#ag" class="headerlink" title="ag"></a><a href="https://github.com/ggreer/the_silver_searcher" target="_blank" rel="external">ag</a></h2><p>又名the silver searcher，是一个高效的代码搜索命令，当你要在大量代码中查找某个字符串时，ag一定是一个好帮手。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在当前目录下的所有文件里查找含有“word”的内容。</span></div><div class="line">$ ag word</div><div class="line"></div><div class="line"><span class="comment">#grep命令实现相同效果。</span></div><div class="line">$ grep <span class="string">"word"</span> * -R</div></pre></td></tr></table></figure></p>
+<p><a href="http://www.dongwm.com/archives/ack/" target="_blank" rel="external">ag, ack, grep效率对比</a></p>
+<h2 id="aria2c"><a href="#aria2c" class="headerlink" title="aria2c"></a><a href="https://github.com/aria2/aria2" target="_blank" rel="external">aria2c</a></h2><p>下载神器，通过网盘助手之类的浏览器扩展导出aria2下载命令，可以突破百度网盘限速，日常使用也很赞哦<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -c 表示启用断点续传</span></div><div class="line"><span class="comment"># -s10 表示将文件分成10部分，多线程多连接下载</span></div><div class="line"><span class="comment"># -k1M 表示文件分块的最小值为1M</span></div><div class="line"><span class="comment"># -x10表示单台服务器的最大连接数</span></div><div class="line"><span class="comment"># -o "filenam" 表示把下载的文件命名为filename</span></div><div class="line"><span class="comment"># “link” 可以是uri，magnet，torrent_file等</span></div><div class="line">$ aria2c -c <span class="_">-s</span>10 -k1M -x10 -o ”filename<span class="string">" "</span>link<span class="string">"</span></div></pre></td></tr></table></figure></p>
+<h2 id="未完待续～～～"><a href="#未完待续～～～" class="headerlink" title="未完待续～～～"></a>未完待续～～～</h2>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://WqyJh.github.io/2016/10/03/有趣的Linux命令/" target="_blank" rel="external">http://WqyJh.github.io/2016/10/03/有趣的Linux命令/</a>
+                </p>
+                <footer><cite><a href="http://WqyJh.github.io">@Wqy's Home Page</a></cite></footer>
+            </blockquote>
+            </div>
+            
+
+            
+            
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "有趣的Linux命令",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://WqyJh.github.io/2016/10/03/有趣的Linux命令/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260528788&web_id=1260528788"></script>
+
+
+
+
+
+</body>
+</html>
