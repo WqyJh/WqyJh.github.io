@@ -1,28 +1,212 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Wqy&#39;s Home Page</title>
-  <subtitle>Impossible is nothing.</subtitle>
-  <link href="/atom.xml" rel="self"/>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
   
-  <link href="http://WqyJh.github.io/"/>
-  <updated>2016-12-20T11:37:49.723Z</updated>
-  <id>http://WqyJh.github.io/</id>
+  <title>设计模式 | Wqy&#39;s Home Page | Impossible is nothing.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <author>
-    <name>wqy</name>
-    <email>781345688@qq.com</email>
-  </author>
+  <meta name="theme-color" content="#9C27B0">
   
-  <generator uri="http://hexo.io/">Hexo</generator>
   
-  <entry>
-    <title>设计模式</title>
-    <link href="http://WqyJh.github.io/2016/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://WqyJh.github.io/2016/12/20/设计模式/</id>
-    <published>2016-12-20T11:37:14.000Z</published>
-    <updated>2016-12-20T11:37:49.723Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h3 id="静态实例方式"><a href="#静态实例方式" class="headerlink" title="静态实例方式"></a>静态实例方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">    private static Singleton instance = new Singleton();</div><div class="line">    private Singleton() &#123;&#125;</div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <meta name="keywords" content="">
+  <meta name="description" content="设计模式单例模式静态实例方式1234567public class Singleton &amp;#123;    private static Singleton instance = new Singleton();    private Singleton() &amp;#123;&amp;#125;    public static Singleton getInstance() &amp;#123;        re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://WqyJh.github.io/2016/12/20/设计模式/index.html">
+<meta property="og:site_name" content="Wqy's Home Page">
+<meta property="og:description" content="设计模式单例模式静态实例方式1234567public class Singleton &amp;#123;    private static Singleton instance = new Singleton();    private Singleton() &amp;#123;&amp;#125;    public static Singleton getInstance() &amp;#123;        re">
+<meta property="og:image" content="http://oih52y89x.bkt.clouddn.com/BrigePattern.png">
+<meta property="og:image" content="http://oih52y89x.bkt.clouddn.com/brige-pattern-instance2.png">
+<meta property="og:image" content="http://oih52y89x.bkt.clouddn.com/Printer1.png">
+<meta property="og:image" content="http://oih52y89x.bkt.clouddn.com/Printer2.png">
+<meta property="og:image" content="http://oih52y89x.bkt.clouddn.com/Printer3.png">
+<meta property="og:updated_time" content="2016-12-20T11:37:49.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="设计模式单例模式静态实例方式1234567public class Singleton &amp;#123;    private static Singleton instance = new Singleton();    private Singleton() &amp;#123;&amp;#125;    public static Singleton getInstance() &amp;#123;        re">
+<meta name="twitter:image" content="http://oih52y89x.bkt.clouddn.com/BrigePattern.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Wqy&#39;s Home Page" type="application/atom+xml">
+  
+  <meta name="summary" content="Stay hungry, stay foolish!">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div style="display:none">
+    <img src="/img/logo.jpg" alt="分享图标" />
+  </div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">wqy</h5>
+        <a href="mailto:781345688@qq.com" title="781345688@qq.com" class="mail">781345688@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/categories"  >
+              <i class="icon icon-lg icon-categories"></i>
+              Categories
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/WqyJh" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Wqy&#39;s Home Page &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">设计模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">设计模式</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-12-20T11:37:14.000Z" itemprop="datePublished" class="page-time">
+  2016-12-20
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-设计模式" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#设计模式"><span class="post-toc-number">1.</span> <span class="post-toc-text">设计模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单例模式"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">单例模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态实例方式"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">静态实例方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#懒加载单例（线程不安全版）"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">懒加载单例（线程不安全版）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#懒加载单例（线程安全版）"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">懒加载单例（线程安全版）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#双重检验锁"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">双重检验锁</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#饿汉式（唯一静态变量）"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">饿汉式（唯一静态变量）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态内部类"><span class="post-toc-number">1.1.6.</span> <span class="post-toc-text">静态内部类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#枚举-Enum"><span class="post-toc-number">1.1.7.</span> <span class="post-toc-text">枚举 Enum</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#登记式单例"><span class="post-toc-number">1.1.8.</span> <span class="post-toc-text">登记式单例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#桥接模式"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">桥接模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结构"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#举个栗子"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">举个栗子</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一种思路"><span class="post-toc-number">1.2.2.1.</span> <span class="post-toc-text">一种思路</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决方案"><span class="post-toc-number">1.2.2.2.</span> <span class="post-toc-text">解决方案</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本质"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">本质</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h3 id="静态实例方式"><a href="#静态实例方式" class="headerlink" title="静态实例方式"></a>静态实例方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">    private static Singleton instance = new Singleton();</div><div class="line">    private Singleton() &#123;&#125;</div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这种实现方法有一个很大的缺点，在类加载的时候 instance 就会被实例化，即使加载器是静态的。因此对于资源密集，配置开销比较大的单例更合理的做法是将实例化推迟到使用它的时候。即懒加载。</p>
 <h3 id="懒加载单例（线程不安全版）"><a href="#懒加载单例（线程不安全版）" class="headerlink" title="懒加载单例（线程不安全版）"></a>懒加载单例（线程不安全版）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class LazySingleton &#123;</div><div class="line">    private static LazySingleton instance = null;</div><div class="line">    private LazySingleton() &#123;&#125;</div><div class="line">    public static LazySingleton getInstance() &#123;</div><div class="line">        if (instance == null) &#123;</div><div class="line">            instance = new LazySingleton();</div><div class="line">        &#125;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这种方式用到了懒加载，将实例化推迟到了使用的时候，但是当多个线程同时调用<code>getInstance()</code>的时候，就有可能创建多个实例。</p>
@@ -59,99 +243,158 @@
 <h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>用桥接模式来重构吧！<br><img src="http://oih52y89x.bkt.clouddn.com/Printer3.png" alt="@用桥接模式来重构|center"><br>上图中<code>Printer</code>是一个抽象类，<code>print()</code>是抽象方法。<br>这样改进后，每增加一种颜色方案时，只需增加一个<code>Printer</code>的实现类，每增加一种页面方案的时候只需增加一个<code>PrinterImpl</code>的实现类，大大减少了要维护的代码量。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 彩色单面打印</span></div><div class="line">Printer coloredSinglePrinter = <span class="keyword">new</span> ColoredPrinter();</div><div class="line">coloredSinglePrinter.setPrinterImpl(<span class="keyword">new</span> SinglePrinter());</div><div class="line">coloredSinglePrinter.print();</div><div class="line"></div><div class="line"><span class="comment">// 黑白双面打印</span></div><div class="line">Printer blackDoublePrinter = <span class="keyword">new</span> BlackPrinter();</div><div class="line">blackDoublePrinter.setPrinterImpl(<span class="keyword">new</span> DoublePrinter());</div><div class="line">blackDoublePrinter.print();</div></pre></td></tr></table></figure></p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>大部分的跨平台 SDK 都是桥接模式的应用，例如 JDBC、OpenGL、游戏引擎等。他们提供的 API 接口就是桥接模式中的<code>Abstraction</code>，在各个平台上的实现就是对<code>Implementor</code>的具体实现，我们在使用的时候，只需要获得一个<code>Abstraction</code>的实例，然后调用实例的<code>operation()</code>就可以完成我们的业务逻辑了。<br>就拿 JDBC 来说，JDBC API 对应着<code>Abstraction</code>，而 JDBC Driver 就是<code>Implementor</code>接口，各个数据库提供商提供的数据库驱动就是这一接口的具体实现。我们使用 JDBC 的时候，是针对 JDBC API 编程，即客户端只与<code>Abstraction</code>交互。图中的<code>RefinedAbstraction</code>是对<code>Abstraction</code>的扩展。<br>说的具体一点就是 JDBC 里的<code>Connection</code>和<code>Statment</code>对应着桥接模式里的<code>Abstraction</code>，<code>PreparedStatment</code>可以视作一个<code>RefinedAbstraction</code>。</p>
 <h3 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h3><p>桥接模式的应用非常广泛，其本质就是面向抽象编程。利用组合关系而不是继承，分离多个维度的抽象和实现部分，使他们都可以独立变化。如果做一件事有两个维度的变化量（比如说两个团队开发的两个组件之间需要交互），那么不要考虑，就用桥接模式吧！<br>当然多个维度也是可以的，不过要根据业务逻辑来决定接口之间的关联关系。我们在开发中使用的第三方依赖，如果它还依赖与其它第三方库，这就可以视为一个桥接链。如果我们使用的两个依赖，他们之间也有依赖关系，就是一个多维度的桥接关系，我们只面向库提供的接口编程，一个库内部实现的改变不会影响我们编码，也不会影响另一个库（前提是不改变接口），一个库扩展出新的功能，我们和第三方都只要做很小的改动就能使用这个功能，而且不会影响原有代码的稳定。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;设计模式&quot;&gt;&lt;a href=&quot;#设计模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式&quot;&gt;&lt;/a&gt;设计模式&lt;/h1&gt;&lt;h2 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; title=&quot;单例模式&quot;&gt;&lt;/a
-    
-    </summary>
-    
-    
-  </entry>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://WqyJh.github.io/2016/12/20/设计模式/" target="_blank" rel="external">http://WqyJh.github.io/2016/12/20/设计模式/</a>
+                </p>
+                <footer><cite><a href="http://WqyJh.github.io">@Wqy's Home Page</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
   
-  <entry>
-    <title>UML建模</title>
-    <link href="http://WqyJh.github.io/2016/11/18/UML%E5%BB%BA%E6%A8%A1/"/>
-    <id>http://WqyJh.github.io/2016/11/18/UML建模/</id>
-    <published>2016-11-18T15:22:06.000Z</published>
-    <updated>2016-11-18T15:22:06.630Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="UML建模"><a href="#UML建模" class="headerlink" title="UML建模"></a>UML建模</h1><h2 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h2><blockquote>
-<p>UseCases are a means to capture the requirements of systems, i.e., what systems are supposed to do. The key concepts specified in this clause are Actors, UseCases, and subjects. Each UseCase’s subject represents a system under consideration to which the UseCase applies. Users and any other systems that may interact with a subject are represented as Actors.<br>A UseCase is a specification of behavior. An instance of a UseCase refers to an occurrence of the emergent behavior that conforms to the corresponding UseCase. Such instances are often described by Interactions.</p>
-<p>@引自<a href="http://www.uml.org/" target="_blank" rel="external">uml.org</a></p>
-</blockquote>
-<p>用例是描述系统需求的一种手段，即，什么系统应该做什么。它包含的关键概念有Actors（参与者），UseCases（用例）和Subjects（主体）。</p>
-<ul>
-<li>Subject代表一个包含多个用例的系统。用户和任何其它系统在与Subject交互时视为Actor。</li>
-<li>UseCase是一个具体的行为。 UseCase的实例指的是指发生的相应行为。这样的实例通常由交互描述。</li>
-</ul>
-<blockquote>
-<p>另有Subject的解释：<br><a href="http://www.uml-diagrams.org/use-case-subject.html" target="_blank" rel="external">A subject is a classifier (including subsystem, component, or even class) representing a business, software system, physical system or device under analysis, design, or consideration, having some behavior, and to which a set of use cases applies.</a></p>
-</blockquote>
-<p>用例图（Use Case Diagram）是行为图（Behavior Diagrams）的一种，主要用来描述用户、需求、系统功能单元之间的关系，通常在需求分析过程中建立。</p>
-<h3 id="包含元素"><a href="#包含元素" class="headerlink" title="包含元素"></a>包含元素</h3><ul>
-<li><a href="http://www.uml-diagrams.org/use-case-actor.html" target="_blank" rel="external">Actor（参与者）</a><br>与应用程序或系统进行交互的用户、组织或外部系统。<br>用一个小人表示。</li>
-<li><a href="http://www.uml-diagrams.org/use-case.html" target="_blank" rel="external">Use Case（用例）</a><br>外部可见的系统功能，对系统服务进行描述。<br>用一个椭圆表示。</li>
-<li><a href="http://www.uml-diagrams.org/use-case-subject.html" target="_blank" rel="external">Subject（主体）</a><br>表示包含一个或多个用例的系统。<br>用一个矩形方框表示。</li>
-<li>关系<ul>
-<li><a href="http://www.uml-diagrams.org/use-case-actor-association.html" target="_blank" rel="external">association（关联关系）</a><br>用例图中只允许Actor和UseCase间的双向关联，即一条没有箭头的线。线的两端可以有数字，表示关联关系的多重性。<strong>有些建模软件、作图软件只有带箭头的线，所以在很多文章里看到的都是用带箭头的线表示关联关系</strong></li>
-<li><a href="http://www.uml-diagrams.org/use-case-include.html" target="_blank" rel="external">include（包含关系）</a><br>两个用例间的包含关系用一个单箭头虚线表示，由包含者指向被包含者。线有一个<code>&lt;&lt;include&gt;&gt;</code>标签。</li>
-<li><a href="http://www.uml-diagrams.org/use-case-extend.html" target="_blank" rel="external">extend （扩展关系）</a><br>扩展关系指用例功能的延伸，相当于为其提供一个附加功能。<br> 两个用例间的扩展关系用一个单箭头虚线表示，由扩展指向被扩展。线有一个<code>&lt;&lt;extend&gt;&gt;</code>标签。</li>
-<li><a href="http://www.uml-diagrams.org/generalization.html?context=class-diagrams" target="_blank" rel="external">generalization （泛化关系）</a><br>与类图中的泛化（继承）关系相同，可以是Actor之间的泛化关系，也可以是UseCase之间的泛化关系。<br>由一个单向三角实线箭头表示，箭头指向基类。</li>
-</ul>
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/11/18/UML建模/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">UML建模</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "设计模式",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://WqyJh.github.io/2016/12/20/设计模式/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
 </li>
-</ul>
-<p>参考：</p>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/rational/r-usecase-atm/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/rational/r-usecase-atm/</a></li>
-<li><a href="http://www.uml-diagrams.org/use-case-diagrams.html" target="_blank" rel="external">http://www.uml-diagrams.org/use-case-diagrams.html</a></li>
-<li><a href="http://blog.csdn.net/tianhai110/article/details/6369762" target="_blank" rel="external">http://blog.csdn.net/tianhai110/article/details/6369762</a></li>
-<li><a href="http://www.uml.org/" target="_blank" rel="external">uml.org</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;UML建模&quot;&gt;&lt;a href=&quot;#UML建模&quot; class=&quot;headerlink&quot; title=&quot;UML建模&quot;&gt;&lt;/a&gt;UML建模&lt;/h1&gt;&lt;h2 id=&quot;用例图&quot;&gt;&lt;a href=&quot;#用例图&quot; class=&quot;headerlink&quot; title=&quot;用例图&quot;&gt;&lt;/
-    
-    </summary>
-    
-      <category term="软件工程" scheme="http://WqyJh.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="UML" scheme="http://WqyJh.github.io/tags/UML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>有趣的Linux命令</title>
-    <link href="http://WqyJh.github.io/2016/10/03/%E6%9C%89%E8%B6%A3%E7%9A%84Linux%E5%91%BD%E4%BB%A4/"/>
-    <id>http://WqyJh.github.io/2016/10/03/有趣的Linux命令/</id>
-    <published>2016-10-03T08:18:34.000Z</published>
-    <updated>2016-11-11T16:35:34.138Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="ag"><a href="#ag" class="headerlink" title="ag"></a><a href="https://github.com/ggreer/the_silver_searcher" target="_blank" rel="external">ag</a></h2><p>又名the silver searcher，是一个高效的代码搜索命令，当你要在大量代码中查找某个字符串时，ag一定是一个好帮手。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在当前目录下的所有文件里查找含有“word”的内容。</span></div><div class="line">$ ag word</div><div class="line"></div><div class="line"><span class="comment">#grep命令实现相同效果。</span></div><div class="line">$ grep <span class="string">"word"</span> * -R</div></pre></td></tr></table></figure></p>
-<p><a href="http://www.dongwm.com/archives/ack/" target="_blank" rel="external">ag, ack, grep效率对比</a></p>
-<h2 id="aria2c"><a href="#aria2c" class="headerlink" title="aria2c"></a><a href="https://github.com/aria2/aria2" target="_blank" rel="external">aria2c</a></h2><p>下载神器，通过网盘助手之类的浏览器扩展导出aria2下载命令，可以突破百度网盘限速，日常使用也很赞哦<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -c 表示启用断点续传</span></div><div class="line"><span class="comment"># -s10 表示将文件分成10部分，多线程多连接下载</span></div><div class="line"><span class="comment"># -k1M 表示文件分块的最小值为1M</span></div><div class="line"><span class="comment"># -x10表示单台服务器的最大连接数</span></div><div class="line"><span class="comment"># -o "filenam" 表示把下载的文件命名为filename</span></div><div class="line"><span class="comment"># “link” 可以是uri，magnet，torrent_file等</span></div><div class="line">$ aria2c -c <span class="_">-s</span>10 -k1M -x10 -o ”filename<span class="string">" "</span>link<span class="string">"</span></div></pre></td></tr></table></figure></p>
-<h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><p>以树状图形式列出目录内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -L 2 表示目录树的最大深度</span></div><div class="line"><span class="comment"># -I exclude_pattern 匹配正则字符串的文件或目录不予显示</span></div><div class="line"><span class="comment"># -P include_pattern 只显示匹配正则字符串的文和或目录</span></div><div class="line">$ tree -L 2 -I exclude_pattern [-P include_pattern] path</div></pre></td></tr></table></figure>
-<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><p>scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的远程文件拷贝命令，有了这条命令就可以不用配置ftp来传文件了，直接用ssh远程登录的配置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -r 递归地复制目录中所有文件</span></div><div class="line"><span class="comment"># -v verbose模式，在控制台输出操作</span></div><div class="line"><span class="comment"># -i identity_file 使用identity_file表示的ssh秘钥来认证身份</span></div><div class="line"><span class="comment"># source 要复制的源文件</span></div><div class="line"><span class="comment"># user 要登录的远程用户名</span></div><div class="line"><span class="comment"># ip 远程服务器ip</span></div><div class="line"><span class="comment"># dest 服务器上的目标目录</span></div><div class="line">$ scp -r -v -i identity_file <span class="built_in">source</span> user@ip:dest</div></pre></td></tr></table></figure>
-<h2 id="create-ap"><a href="#create-ap" class="headerlink" title="create_ap"></a><a href="https://github.com/oblique/create_ap" target="_blank" rel="external">create_ap</a></h2><p>create_ap可以用来在支持AP的网卡上开启无线热点<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wlan0指自己的无线网卡</span></div><div class="line"><span class="comment"># eth0指自己的以太网卡</span></div><div class="line"><span class="comment"># ssid是无线热点的名称</span></div><div class="line"><span class="comment"># password是无线热点的密码</span></div><div class="line">$ sudo create_ap wlan0 eth0 ssid password</div></pre></td></tr></table></figure></p>
-<h2 id="未完待续～～～"><a href="#未完待续～～～" class="headerlink" title="未完待续～～～"></a>未完待续～～～</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;ag&quot;&gt;&lt;a href=&quot;#ag&quot; class=&quot;headerlink&quot; title=&quot;ag&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/ggreer/the_silver_searcher&quot; target=&quot;_blank&quot; rel=&quot;ext
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://WqyJh.github.io/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://WqyJh.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-</feed>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260528788&web_id=1260528788"></script>
+
+
+
+
+
+<script type="text/javascript">
+  var msg_desc = document.getElementsByName('summary')[0].content;
+</script>
+</body>
+</html>
