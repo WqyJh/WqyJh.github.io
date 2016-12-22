@@ -1,28 +1,215 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Wqy&#39;s Home Page</title>
-  <subtitle>Impossible is nothing.</subtitle>
-  <link href="/atom.xml" rel="self"/>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
   
-  <link href="http://WqyJh.github.io/"/>
-  <updated>2016-12-22T11:49:12.412Z</updated>
-  <id>http://WqyJh.github.io/</id>
+  <title>Android SQLite 源码分析 | Wqy&#39;s Home Page | Impossible is nothing.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <author>
-    <name>wqy</name>
-    <email>781345688@qq.com</email>
-  </author>
+  <meta name="theme-color" content="#9C27B0">
   
-  <generator uri="http://hexo.io/">Hexo</generator>
   
-  <entry>
-    <title>Android SQLite 源码分析</title>
-    <link href="http://WqyJh.github.io/2016/12/22/Android-SQLite-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    <id>http://WqyJh.github.io/2016/12/22/Android-SQLite-源码分析/</id>
-    <published>2016-12-22T11:04:58.000Z</published>
-    <updated>2016-12-22T11:49:12.412Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="SQL-语句的执行过程"><a href="#SQL-语句的执行过程" class="headerlink" title="SQL 语句的执行过程"></a>SQL 语句的执行过程</h1><p>我们在使用 SQLiteDatabase 的时候，一般都是使用它的提供的封装好的方法，那么这些方法的究竟做了哪些事呢？</p>
+  <meta name="keywords" content="SQLite">
+  <meta name="description" content="SQL 语句的执行过程我们在使用 SQLiteDatabase 的时候，一般都是使用它的提供的封装好的方法，那么这些方法的究竟做了哪些事呢？
+SQLiteDatabase从最简单的insert(String table, String nullColumnHack, ContentValues values)方法来研究。在 SQLiteDatabase.java 文件中找到这个方法，非常简单，它简">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android SQLite 源码分析">
+<meta property="og:url" content="http://WqyJh.github.io/2016/12/22/Android-SQLite-源码分析/index.html">
+<meta property="og:site_name" content="Wqy's Home Page">
+<meta property="og:description" content="SQL 语句的执行过程我们在使用 SQLiteDatabase 的时候，一般都是使用它的提供的封装好的方法，那么这些方法的究竟做了哪些事呢？
+SQLiteDatabase从最简单的insert(String table, String nullColumnHack, ContentValues values)方法来研究。在 SQLiteDatabase.java 文件中找到这个方法，非常简单，它简">
+<meta property="og:image" content="http://oih52y89x.bkt.clouddn.com/sqlite1.png">
+<meta property="og:updated_time" content="2016-12-22T11:49:12.412Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android SQLite 源码分析">
+<meta name="twitter:description" content="SQL 语句的执行过程我们在使用 SQLiteDatabase 的时候，一般都是使用它的提供的封装好的方法，那么这些方法的究竟做了哪些事呢？
+SQLiteDatabase从最简单的insert(String table, String nullColumnHack, ContentValues values)方法来研究。在 SQLiteDatabase.java 文件中找到这个方法，非常简单，它简">
+<meta name="twitter:image" content="http://oih52y89x.bkt.clouddn.com/sqlite1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Wqy&#39;s Home Page" type="application/atom+xml">
+  
+  <meta name="summary" content="Stay hungry, stay foolish!">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div style="display:none">
+    <img src="/img/logo.jpg" alt="分享图标" />
+  </div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">wqy</h5>
+        <a href="mailto:781345688@qq.com" title="781345688@qq.com" class="mail">781345688@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/categories"  >
+              <i class="icon icon-lg icon-categories"></i>
+              Categories
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/WqyJh" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Wqy&#39;s Home Page &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android SQLite 源码分析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Android SQLite 源码分析</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-12-22T11:04:58.000Z" itemprop="datePublished" class="page-time">
+  2016-12-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-Android-SQLite-源码分析" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/">SQLite</a></li></ul>
+
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL-语句的执行过程"><span class="post-toc-number">1.</span> <span class="post-toc-text">SQL 语句的执行过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQLiteDatabase"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">SQLiteDatabase</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQLiteStatment"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">SQLiteStatment</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQLiteSession"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">SQLiteSession</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQLiteConnection"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">SQLiteConnection</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DatabaseUtils-和-Cursor-接口（不重要）"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">DatabaseUtils 和 Cursor 接口（不重要）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PreparedStatment"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">PreparedStatment</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结（附图）"><span class="post-toc-number">2.</span> <span class="post-toc-text">小结（附图）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQLiteSession-Documentation-翻译"><span class="post-toc-number">3.</span> <span class="post-toc-text">SQLiteSession Documentation 翻译</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于数据库的会话"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">关于数据库的会话</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#所有权和并发保证"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">所有权和并发保证</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#事务"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">事务</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据库连接"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">数据库连接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#响应"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">响应</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#可重入（Reentrance）"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">可重入（Reentrance）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#（未完待续～）"><span class="post-toc-number">4.</span> <span class="post-toc-text">（未完待续～）</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="SQL-语句的执行过程"><a href="#SQL-语句的执行过程" class="headerlink" title="SQL 语句的执行过程"></a>SQL 语句的执行过程</h1><p>我们在使用 SQLiteDatabase 的时候，一般都是使用它的提供的封装好的方法，那么这些方法的究竟做了哪些事呢？</p>
 <h2 id="SQLiteDatabase"><a href="#SQLiteDatabase" class="headerlink" title="SQLiteDatabase"></a>SQLiteDatabase</h2><p>从最简单的<code>insert(String table, String nullColumnHack, ContentValues values)</code>方法来研究。<br>在 SQLiteDatabase.java 文件中找到这个方法，非常简单，它简单粗暴地调用了<code>insertWithOnConflict()</code>方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">insert</span><span class="params">(String table, String nullColumnHack, ContentValues values)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">return</span> insertWithOnConflict(table, nullColumnHack, values, CONFLICT_NONE);</div><div class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">        Log.e(TAG, <span class="string">"Error inserting "</span> + values, e);</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">insertWithOnConflict</span><span class="params">(String table, String nullColumnHack,</span></span></div><div class="line">         ContentValues initialValues, <span class="keyword">int</span> conflictAlgorithm) &#123;</div><div class="line">     acquireReference();</div><div class="line">     <span class="keyword">try</span> &#123;</div><div class="line">      <span class="comment">// 将参数拼接成 sql 语句，这里只是添加了 table</span></div><div class="line">      <span class="comment">// 大概是这个样子 INSERT INTO table(</span></div><div class="line">      <span class="comment">// 那个 CONFLICT_VALUES 先不管</span></div><div class="line">         StringBuilder sql = <span class="keyword">new</span> StringBuilder();</div><div class="line">         sql.append(<span class="string">"INSERT"</span>);</div><div class="line">         sql.append(CONFLICT_VALUES[conflictAlgorithm]);</div><div class="line">         sql.append(<span class="string">" INTO "</span>);</div><div class="line">         sql.append(table);</div><div class="line">         sql.append(<span class="string">'('</span>);</div><div class="line"></div><div class="line">         Object[] bindArgs = <span class="keyword">null</span>;</div><div class="line">         <span class="keyword">int</span> size = (initialValues != <span class="keyword">null</span> &amp;&amp; initialValues.size() &gt; <span class="number">0</span>)</div><div class="line">                 ? initialValues.size() : <span class="number">0</span>;</div><div class="line">         <span class="keyword">if</span> (size &gt; <span class="number">0</span>) &#123;</div><div class="line">             bindArgs = <span class="keyword">new</span> Object[size];</div><div class="line">             <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">             <span class="comment">// initialValues 的 keySet 是对应的 column</span></div><div class="line">             <span class="comment">// 将 column 拼接上去，并按 column 的顺序</span></div><div class="line">             <span class="comment">// 将参数取出保存到 bindArgs</span></div><div class="line">             <span class="comment">// 执行完这个循环就成了这样</span></div><div class="line">             <span class="comment">// INSERT INTO table(column1,column2,...</span></div><div class="line">             <span class="keyword">for</span> (String colName : initialValues.keySet()) &#123;</div><div class="line">                 sql.append((i &gt; <span class="number">0</span>) ? <span class="string">","</span> : <span class="string">""</span>);</div><div class="line">                 sql.append(colName);</div><div class="line">                 bindArgs[i++] = initialValues.get(colName);</div><div class="line">             &#125;</div><div class="line">             <span class="comment">// 添加 VALUES 子句，用'?'对参数占位</span></div><div class="line">             <span class="comment">// 执行完就成了这样</span></div><div class="line">             <span class="comment">// INSERT INTO table(column1,column2,...) VALUES (?,?,...)</span></div><div class="line">             sql.append(<span class="string">')'</span>);</div><div class="line">             sql.append(<span class="string">" VALUES ("</span>);</div><div class="line">             <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; size; i++) &#123;</div><div class="line">                 sql.append((i &gt; <span class="number">0</span>) ? <span class="string">",?"</span> : <span class="string">"?"</span>);</div><div class="line">             &#125;</div><div class="line">         &#125; <span class="keyword">else</span> &#123;</div><div class="line">             sql.append(nullColumnHack + <span class="string">") VALUES (NULL"</span>);</div><div class="line">         &#125;</div><div class="line">         sql.append(<span class="string">')'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 创建一个 SQLiteStatment</span></div><div class="line">         SQLiteStatement statement = <span class="keyword">new</span> SQLiteStatement(<span class="keyword">this</span>, sql.toString(), bindArgs);</div><div class="line">         <span class="keyword">try</span> &#123;</div><div class="line">          <span class="comment">// 调用 Statment 的 executeInsert() 方法</span></div><div class="line">             <span class="keyword">return</span> statement.executeInsert();</div><div class="line">         &#125; <span class="keyword">finally</span> &#123;</div><div class="line">             statement.close();</div><div class="line">         &#125;</div><div class="line">     &#125; <span class="keyword">finally</span> &#123;</div><div class="line">         releaseReference();</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
@@ -57,162 +244,158 @@
 <h2 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h2><p>一个<code>SQLDatabase</code>可以同时有多个活动的会话，每个会话在请求数据库的时候都必须获得和释放数据库连接，如果所有连接都被占用，一些会话的事务就会被阻塞直到有可用的连接。<br>一个会话仅在开始事务的时候获得一个连接，事务结束后必须释放。这一特性允许一个有限的数据库连接池里的连接被多个会话高效的共享，只要他们不是全部都在同一时间执行数据库事务。</p>
 <h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>由于数据库连接是有限的，而一个会话会在执行一整个事务的时间内占用一个连接，保持事务有一个较小的规模非常重要。尤其是执行读写操作的事务，因为他们会阻塞其它的事务执行。执行一个耗时事务的时候，考虑每隔一段时间使用<code>yieldTransaction</code>。<br>另一个非常重要的方面是，事务占用太多时间可能导致 UI 线程无响应。即使事务是在后台执行，用户也会很反感事务执行的那几秒里空荡荡的 UI 界面。</p>
 <h2 id="可重入（Reentrance）"><a href="#可重入（Reentrance）" class="headerlink" title="可重入（Reentrance）"></a>可重入（Reentrance）</h2><p>这个类必须容忍重入性的 SQLite 操作调用，因为触发器有可能调用自定义的 SQLite 函数来执行额外的查询。<br>这句话啥意思呢，就是说这个类里的方法必须满足可重入性，就是在一个方法还没执行完毕的时候，它可以被再次调用，且不影响先前的结果。造成这种情况的可能原因是你自定义了一个触发器，它在触发的时候又调用了这个方法。</p>
-<h1 id="（未完待续～）"><a href="#（未完待续～）" class="headerlink" title="（未完待续～）"></a>（未完待续～）</h1>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;SQL-语句的执行过程&quot;&gt;&lt;a href=&quot;#SQL-语句的执行过程&quot; class=&quot;headerlink&quot; title=&quot;SQL 语句的执行过程&quot;&gt;&lt;/a&gt;SQL 语句的执行过程&lt;/h1&gt;&lt;p&gt;我们在使用 SQLiteDatabase 的时候，一般都是使用它的提
-    
-    </summary>
-    
-      <category term="Android" scheme="http://WqyJh.github.io/categories/Android/"/>
-    
-    
-      <category term="SQLite" scheme="http://WqyJh.github.io/tags/SQLite/"/>
-    
-  </entry>
+<h1 id="（未完待续～）"><a href="#（未完待续～）" class="headerlink" title="（未完待续～）"></a>（未完待续～）</h1>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://WqyJh.github.io/2016/12/22/Android-SQLite-源码分析/" target="_blank" rel="external">http://WqyJh.github.io/2016/12/22/Android-SQLite-源码分析/</a>
+                </p>
+                <footer><cite><a href="http://WqyJh.github.io">@Wqy's Home Page</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
   
-  <entry>
-    <title>设计模式</title>
-    <link href="http://WqyJh.github.io/2016/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://WqyJh.github.io/2016/12/20/设计模式/</id>
-    <published>2016-12-20T11:37:14.000Z</published>
-    <updated>2016-12-22T11:55:43.547Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="静态实例方式"><a href="#静态实例方式" class="headerlink" title="静态实例方式"></a>静态实例方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种实现方法有一个很大的缺点，在类加载的时候 instance 就会被实例化，即使加载器是静态的。因此对于资源密集，配置开销比较大的单例更合理的做法是将实例化推迟到使用它的时候。即懒加载。</p>
-<h2 id="懒加载单例（线程不安全版）"><a href="#懒加载单例（线程不安全版）" class="headerlink" title="懒加载单例（线程不安全版）"></a>懒加载单例（线程不安全版）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazySingleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazySingleton instance = <span class="keyword">null</span>;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazySingleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazySingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">            instance = <span class="keyword">new</span> LazySingleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种方式用到了懒加载，将实例化推迟到了使用的时候，但是当多个线程同时调用<code>getInstance()</code>的时候，就有可能创建多个实例。</p>
-<h2 id="懒加载单例（线程安全版）"><a href="#懒加载单例（线程安全版）" class="headerlink" title="懒加载单例（线程安全版）"></a>懒加载单例（线程安全版）</h2><p>为了解决上面的的问题，可以将<code>getInstance()</code>方法设置为同步方法（synchronized）。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> LazySingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">        instance = <span class="keyword">new</span> LazySingleton();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>但是这样虽然做到了线程安全，解决了多实例的问题，但是它并不高效。因为任何时候只能有一个线程调用<code>getInstance()</code>方法，其它线程都会阻塞。</p>
-<h2 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h2><p>双重检验锁模式（double checked locking pattern）是一种同步块加锁的方法。因为会有两次检查<code>instance == null</code>，一次是在同步块外，一次是在同步块内。这样做是因为可能会有多个线程一起进入同步块外的检查，但是只有一个线程才能进入同步块内，这样就保证了多个线程只生成一个实例，而多个线程又能同时获得实例。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">synchronized</span> (Singleton.class) &#123;</div><div class="line">            <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">                instance = <span class="keyword">new</span> Singleton();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这段代码还有一些问题，因为<code>instance = new Singleton()</code>并不是一个原子操作，在 JVM 中这行代码大概做了 3 件事：</p>
-<ol>
-<li>给 instance 分配内存</li>
-<li>调用 Singleton 的构造方法来初始化成员变量</li>
-<li>将 instance 指向对象分配的内存空间</li>
-</ol>
-<p>但是在 JVM 的即时编译器中存在指令重排序的优化。所以上面的第二步和第三步的顺序不能保证，如果第三步比第二步先执行，这时 instance 就不为空了，如果有线程这时调用了 <code>getInstance()</code>方法，就会跳过外层检查，直接得到实例，用该实例访问成员变量就会出错。</p>
-<p>关于指令重排序: <a href="http://ifeve.com/jvm-memory-reordering/" target="_blank" rel="external">http://ifeve.com/jvm-memory-reordering/</a></p>
-<p>解决方案就是吧 instance 变量声明成<code>volatile</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton instance;</div></pre></td></tr></table></figure></p>
-<p>这里使用 volatile 的原因是 volatile 声明的变量会禁止指令重排序优化。<br>但是 Java 5 以前的版本存在内存缺陷，不能避免指令重拍序。</p>
-<h2 id="饿汉式（唯一静态变量）"><a href="#饿汉式（唯一静态变量）" class="headerlink" title="饿汉式（唯一静态变量）"></a>饿汉式（唯一静态变量）</h2><p>饿汉式单例是指单例类在被加载的时候，唯一实例就已经被创建。<br>将单例的实例声明为<code>static</code>和<code>final</code>变量，在类加载的时候就会初始化，所以创建实例是线程安全的，不需要<code>synchronized</code>和<code>instance == null</code>的检验了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>但是这种方式也有缺陷，<code>getInstance()</code>方法不是由外部调用，无法传入参数来初始化，而且也没有懒加载。</p>
-<h2 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;  </div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE;</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种方法即简洁明了地保证了线程安全，又有懒加载的特性，因为只有在第一次调用<code>getInstance()</code>方法的时候，会加载<code>SingletonHolder</code>类并初始化<code>INSTANCE</code>。当然，它也不能配置。</p>
-<h2 id="枚举-Enum"><a href="#枚举-Enum" class="headerlink" title="枚举 Enum"></a>枚举 Enum</h2><p>单元素的枚举类型已经成为实现 Singleton 的最佳方法。Java 的枚举类型实际上是功能齐全的类，因此可以有自己的属性和方法。Java 枚举类型的基本思想是通过公有的静态 final 域为每个枚举常量导出实例的类。<br>用枚举实现单例非常简单，只需要编写一个包含单个元素的枚举类型即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</div><div class="line">	instance;</div><div class="line">	<span class="comment">// fields</span></div><div class="line">	<span class="comment">// methods</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 直接用 Singleton.instance 既可以使用</span></div></pre></td></tr></table></figure></p>
-<h2 id="登记式单例"><a href="#登记式单例" class="headerlink" title="登记式单例"></a>登记式单例</h2><p>单例模式的本质是控制实例数目，那有没有可能使实例的数目为2个、3个或其它个数呢？<br>可以用<code>Map</code>来缓存实例，实现登记式单例，实例的个数可以自由的控制。<br>大概思路如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Instance <span class="title">getInstance</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">	Instance instance = map.get(key);</div><div class="line">	<span class="keyword">if</span> (Object.isNull(instance)) &#123;</div><div class="line">		instance = <span class="keyword">new</span> Instance();</div><div class="line">		map.put(key, instance);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>注意这段代码并不是线程安全的，需要特别处理，可以参考懒汉式单例。</p>
-<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p>它是一种对象结构型模式，又称为柄体 (Handle and Body) 模式或接口 (Interface) 模式。<br><img src="http://oih52y89x.bkt.clouddn.com/BrigePattern.png" alt="@桥接模式的结构|center"></p>
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>桥接模式包含如下角色：</p>
-<ul>
-<li><code>Abstraction</code>：抽象类，持有一个<code>Implementor</code>的实例</li>
-<li><code>RefinedAbstraction</code>：扩充抽象类</li>
-<li><code>Implementor</code>：实现类接口</li>
-<li><code>ConcreteImplementor</code>：具体实现类</li>
-</ul>
-<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><p>假设有一台打印机可以彩色打印也可以黑白打印，可以单面打印也可以双面打印，要实现这台打印机的控制流程，应该怎么做？<br><img src="http://oih52y89x.bkt.clouddn.com/brige-pattern-instance2.png" alt="@打印机|center"></p>
-<h3 id="一种思路"><a href="#一种思路" class="headerlink" title="一种思路"></a>一种思路</h3><p><img src="http://oih52y89x.bkt.clouddn.com/Printer1.png" alt="@抽象接口|center"><br>建立一个抽象接口<code>Printer</code>，然后实现彩色打印和黑白打印的功能，再在彩色答应和黑白打印的基础上增加单面打印和双面打印的功能。<br>这样做是可行的，Java 的 IO 库就是这么做的，定义一个<code>Stream</code>接口，再派生出<code>InputStream</code>和<code>OutputStream</code>，然后又派生出<code>BufferedInputStream</code>和<code>BufferedOutputStream</code>还有<code>FileInputStream</code>等等。<br>但仔细想想就会发现这对程序员简直是一个噩梦，如果这时候新增一个打印照片的功能呢。<br><img src="http://oih52y89x.bkt.clouddn.com/Printer2.png" alt="@增加打印照片的功能|center"><br>真棒，我们又写了两个类！如果再增加一种打印呢，比如说雾面打印（扯）？每增加一个功能就要多写两个类，如果除了单页和双页还有别的方式呢？<br>Java IO 库中这么写是因为 Input 和 Output 不可避免的是两个对立的操作（也许只写一个流，通过改变方向来实现 Input / Output 也可以，但这样会损失代码的语义，还有可能影响性能，毕竟 IO 操作是非常注重性能的）。而且 IO 仅有 Input / Output 这两种操作，那么其中一个维度的控件大小就已经确定为二了，所以每增加一个流的实现要增加两个类。<br>但是我们现在面临的具体问题是，两个维度都有可能发生变化，以这种结构来写，我们将要实现<code>N * M</code>个类，维护的代价还是相当大的，而且不同的实现类可能有很多代码重复，比如<code>ColoredPrinter</code>的子类就都要调用父类的方法来实现彩色打印，然后再执行自己的业务代码。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>用桥接模式来重构吧！<br><img src="http://oih52y89x.bkt.clouddn.com/Printer3.png" alt="@用桥接模式来重构|center"><br>上图中<code>Printer</code>是一个抽象类，<code>print()</code>是抽象方法。<br>这样改进后，每增加一种颜色方案时，只需增加一个<code>Printer</code>的实现类，每增加一种页面方案的时候只需增加一个<code>PrinterImpl</code>的实现类，大大减少了要维护的代码量。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 彩色单面打印</span></div><div class="line">Printer coloredSinglePrinter = <span class="keyword">new</span> ColoredPrinter();</div><div class="line">coloredSinglePrinter.setPrinterImpl(<span class="keyword">new</span> SinglePrinter());</div><div class="line">coloredSinglePrinter.print();</div><div class="line"></div><div class="line"><span class="comment">// 黑白双面打印</span></div><div class="line">Printer blackDoublePrinter = <span class="keyword">new</span> BlackPrinter();</div><div class="line">blackDoublePrinter.setPrinterImpl(<span class="keyword">new</span> DoublePrinter());</div><div class="line">blackDoublePrinter.print();</div></pre></td></tr></table></figure></p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>大部分的跨平台 SDK 都是桥接模式的应用，例如 JDBC、OpenGL、游戏引擎等。他们提供的 API 接口就是桥接模式中的<code>Abstraction</code>，在各个平台上的实现就是对<code>Implementor</code>的具体实现，我们在使用的时候，只需要获得一个<code>Abstraction</code>的实例，然后调用实例的<code>operation()</code>就可以完成我们的业务逻辑了。<br>就拿 JDBC 来说，JDBC API 对应着<code>Abstraction</code>，而 JDBC Driver 就是<code>Implementor</code>接口，各个数据库提供商提供的数据库驱动就是这一接口的具体实现。我们使用 JDBC 的时候，是针对 JDBC API 编程，即客户端只与<code>Abstraction</code>交互。图中的<code>RefinedAbstraction</code>是对<code>Abstraction</code>的扩展。<br>说的具体一点就是 JDBC 里的<code>Connection</code>和<code>Statment</code>对应着桥接模式里的<code>Abstraction</code>，<code>PreparedStatment</code>可以视作一个<code>RefinedAbstraction</code>。</p>
-<h2 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h2><p>桥接模式的应用非常广泛，其本质就是面向抽象编程。利用组合关系而不是继承，分离多个维度的抽象和实现部分，使他们都可以独立变化。如果做一件事有两个维度的变化量（比如说两个团队开发的两个组件之间需要交互），那么不要考虑，就用桥接模式吧！<br>当然多个维度也是可以的，不过要根据业务逻辑来决定接口之间的关联关系。我们在开发中使用的第三方依赖，如果它还依赖与其它第三方库，这就可以视为一个桥接链。如果我们使用的两个依赖，他们之间也有依赖关系，就是一个多维度的桥接关系，我们只面向库提供的接口编程，一个库内部实现的改变不会影响我们编码，也不会影响另一个库（前提是不改变接口），一个库扩展出新的功能，我们和第三方都只要做很小的改动就能使用这个功能，而且不会影响原有代码的稳定。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; title=&quot;单例模式&quot;&gt;&lt;/a&gt;单例模式&lt;/h1&gt;&lt;h2 id=&quot;静态实例方式&quot;&gt;&lt;a href=&quot;#静态实例方式&quot; class=&quot;headerlink&quot; title=&quot;静态实例方
-    
-    </summary>
-    
-      <category term="设计模式" scheme="http://WqyJh.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="Java" scheme="http://WqyJh.github.io/tags/Java/"/>
-    
-  </entry>
+
   
-  <entry>
-    <title>UML建模</title>
-    <link href="http://WqyJh.github.io/2016/11/18/UML%E5%BB%BA%E6%A8%A1/"/>
-    <id>http://WqyJh.github.io/2016/11/18/UML建模/</id>
-    <published>2016-11-18T15:22:06.000Z</published>
-    <updated>2016-11-18T15:22:06.630Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="UML建模"><a href="#UML建模" class="headerlink" title="UML建模"></a>UML建模</h1><h2 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h2><blockquote>
-<p>UseCases are a means to capture the requirements of systems, i.e., what systems are supposed to do. The key concepts specified in this clause are Actors, UseCases, and subjects. Each UseCase’s subject represents a system under consideration to which the UseCase applies. Users and any other systems that may interact with a subject are represented as Actors.<br>A UseCase is a specification of behavior. An instance of a UseCase refers to an occurrence of the emergent behavior that conforms to the corresponding UseCase. Such instances are often described by Interactions.</p>
-<p>@引自<a href="http://www.uml.org/" target="_blank" rel="external">uml.org</a></p>
-</blockquote>
-<p>用例是描述系统需求的一种手段，即，什么系统应该做什么。它包含的关键概念有Actors（参与者），UseCases（用例）和Subjects（主体）。</p>
-<ul>
-<li>Subject代表一个包含多个用例的系统。用户和任何其它系统在与Subject交互时视为Actor。</li>
-<li>UseCase是一个具体的行为。 UseCase的实例指的是指发生的相应行为。这样的实例通常由交互描述。</li>
-</ul>
-<blockquote>
-<p>另有Subject的解释：<br><a href="http://www.uml-diagrams.org/use-case-subject.html" target="_blank" rel="external">A subject is a classifier (including subsystem, component, or even class) representing a business, software system, physical system or device under analysis, design, or consideration, having some behavior, and to which a set of use cases applies.</a></p>
-</blockquote>
-<p>用例图（Use Case Diagram）是行为图（Behavior Diagrams）的一种，主要用来描述用户、需求、系统功能单元之间的关系，通常在需求分析过程中建立。</p>
-<h3 id="包含元素"><a href="#包含元素" class="headerlink" title="包含元素"></a>包含元素</h3><ul>
-<li><a href="http://www.uml-diagrams.org/use-case-actor.html" target="_blank" rel="external">Actor（参与者）</a><br>与应用程序或系统进行交互的用户、组织或外部系统。<br>用一个小人表示。</li>
-<li><a href="http://www.uml-diagrams.org/use-case.html" target="_blank" rel="external">Use Case（用例）</a><br>外部可见的系统功能，对系统服务进行描述。<br>用一个椭圆表示。</li>
-<li><a href="http://www.uml-diagrams.org/use-case-subject.html" target="_blank" rel="external">Subject（主体）</a><br>表示包含一个或多个用例的系统。<br>用一个矩形方框表示。</li>
-<li>关系<ul>
-<li><a href="http://www.uml-diagrams.org/use-case-actor-association.html" target="_blank" rel="external">association（关联关系）</a><br>用例图中只允许Actor和UseCase间的双向关联，即一条没有箭头的线。线的两端可以有数字，表示关联关系的多重性。<strong>有些建模软件、作图软件只有带箭头的线，所以在很多文章里看到的都是用带箭头的线表示关联关系</strong></li>
-<li><a href="http://www.uml-diagrams.org/use-case-include.html" target="_blank" rel="external">include（包含关系）</a><br>两个用例间的包含关系用一个单箭头虚线表示，由包含者指向被包含者。线有一个<code>&lt;&lt;include&gt;&gt;</code>标签。</li>
-<li><a href="http://www.uml-diagrams.org/use-case-extend.html" target="_blank" rel="external">extend （扩展关系）</a><br>扩展关系指用例功能的延伸，相当于为其提供一个附加功能。<br> 两个用例间的扩展关系用一个单箭头虚线表示，由扩展指向被扩展。线有一个<code>&lt;&lt;extend&gt;&gt;</code>标签。</li>
-<li><a href="http://www.uml-diagrams.org/generalization.html?context=class-diagrams" target="_blank" rel="external">generalization （泛化关系）</a><br>与类图中的泛化（继承）关系相同，可以是Actor之间的泛化关系，也可以是UseCase之间的泛化关系。<br>由一个单向三角实线箭头表示，箭头指向基类。</li>
-</ul>
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/12/20/设计模式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">设计模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "Android SQLite 源码分析",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://WqyJh.github.io/2016/12/22/Android-SQLite-源码分析/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
 </li>
-</ul>
-<p>参考：</p>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/rational/r-usecase-atm/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/rational/r-usecase-atm/</a></li>
-<li><a href="http://www.uml-diagrams.org/use-case-diagrams.html" target="_blank" rel="external">http://www.uml-diagrams.org/use-case-diagrams.html</a></li>
-<li><a href="http://blog.csdn.net/tianhai110/article/details/6369762" target="_blank" rel="external">http://blog.csdn.net/tianhai110/article/details/6369762</a></li>
-<li><a href="http://www.uml.org/" target="_blank" rel="external">uml.org</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;UML建模&quot;&gt;&lt;a href=&quot;#UML建模&quot; class=&quot;headerlink&quot; title=&quot;UML建模&quot;&gt;&lt;/a&gt;UML建模&lt;/h1&gt;&lt;h2 id=&quot;用例图&quot;&gt;&lt;a href=&quot;#用例图&quot; class=&quot;headerlink&quot; title=&quot;用例图&quot;&gt;&lt;/
-    
-    </summary>
-    
-      <category term="软件工程" scheme="http://WqyJh.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="UML" scheme="http://WqyJh.github.io/tags/UML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>有趣的Linux命令</title>
-    <link href="http://WqyJh.github.io/2016/10/03/%E6%9C%89%E8%B6%A3%E7%9A%84Linux%E5%91%BD%E4%BB%A4/"/>
-    <id>http://WqyJh.github.io/2016/10/03/有趣的Linux命令/</id>
-    <published>2016-10-03T08:18:34.000Z</published>
-    <updated>2016-11-11T16:35:34.138Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="ag"><a href="#ag" class="headerlink" title="ag"></a><a href="https://github.com/ggreer/the_silver_searcher" target="_blank" rel="external">ag</a></h2><p>又名the silver searcher，是一个高效的代码搜索命令，当你要在大量代码中查找某个字符串时，ag一定是一个好帮手。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在当前目录下的所有文件里查找含有“word”的内容。</span></div><div class="line">$ ag word</div><div class="line"></div><div class="line"><span class="comment">#grep命令实现相同效果。</span></div><div class="line">$ grep <span class="string">"word"</span> * -R</div></pre></td></tr></table></figure></p>
-<p><a href="http://www.dongwm.com/archives/ack/" target="_blank" rel="external">ag, ack, grep效率对比</a></p>
-<h2 id="aria2c"><a href="#aria2c" class="headerlink" title="aria2c"></a><a href="https://github.com/aria2/aria2" target="_blank" rel="external">aria2c</a></h2><p>下载神器，通过网盘助手之类的浏览器扩展导出aria2下载命令，可以突破百度网盘限速，日常使用也很赞哦<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -c 表示启用断点续传</span></div><div class="line"><span class="comment"># -s10 表示将文件分成10部分，多线程多连接下载</span></div><div class="line"><span class="comment"># -k1M 表示文件分块的最小值为1M</span></div><div class="line"><span class="comment"># -x10表示单台服务器的最大连接数</span></div><div class="line"><span class="comment"># -o "filenam" 表示把下载的文件命名为filename</span></div><div class="line"><span class="comment"># “link” 可以是uri，magnet，torrent_file等</span></div><div class="line">$ aria2c -c <span class="_">-s</span>10 -k1M -x10 -o ”filename<span class="string">" "</span>link<span class="string">"</span></div></pre></td></tr></table></figure></p>
-<h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><p>以树状图形式列出目录内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -L 2 表示目录树的最大深度</span></div><div class="line"><span class="comment"># -I exclude_pattern 匹配正则字符串的文件或目录不予显示</span></div><div class="line"><span class="comment"># -P include_pattern 只显示匹配正则字符串的文和或目录</span></div><div class="line">$ tree -L 2 -I exclude_pattern [-P include_pattern] path</div></pre></td></tr></table></figure>
-<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><p>scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的远程文件拷贝命令，有了这条命令就可以不用配置ftp来传文件了，直接用ssh远程登录的配置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -r 递归地复制目录中所有文件</span></div><div class="line"><span class="comment"># -v verbose模式，在控制台输出操作</span></div><div class="line"><span class="comment"># -i identity_file 使用identity_file表示的ssh秘钥来认证身份</span></div><div class="line"><span class="comment"># source 要复制的源文件</span></div><div class="line"><span class="comment"># user 要登录的远程用户名</span></div><div class="line"><span class="comment"># ip 远程服务器ip</span></div><div class="line"><span class="comment"># dest 服务器上的目标目录</span></div><div class="line">$ scp -r -v -i identity_file <span class="built_in">source</span> user@ip:dest</div></pre></td></tr></table></figure>
-<h2 id="create-ap"><a href="#create-ap" class="headerlink" title="create_ap"></a><a href="https://github.com/oblique/create_ap" target="_blank" rel="external">create_ap</a></h2><p>create_ap可以用来在支持AP的网卡上开启无线热点<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wlan0指自己的无线网卡</span></div><div class="line"><span class="comment"># eth0指自己的以太网卡</span></div><div class="line"><span class="comment"># ssid是无线热点的名称</span></div><div class="line"><span class="comment"># password是无线热点的密码</span></div><div class="line">$ sudo create_ap wlan0 eth0 ssid password</div></pre></td></tr></table></figure></p>
-<h2 id="未完待续～～～"><a href="#未完待续～～～" class="headerlink" title="未完待续～～～"></a>未完待续～～～</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;ag&quot;&gt;&lt;a href=&quot;#ag&quot; class=&quot;headerlink&quot; title=&quot;ag&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/ggreer/the_silver_searcher&quot; target=&quot;_blank&quot; rel=&quot;ext
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://WqyJh.github.io/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://WqyJh.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-</feed>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1260528788&web_id=1260528788"></script>
+
+
+
+
+
+<script type="text/javascript">
+  var msg_desc = document.getElementsByName('summary')[0].content;
+</script>
+</body>
+</html>
